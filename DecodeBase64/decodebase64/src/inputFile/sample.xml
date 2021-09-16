@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ticket>
+    <recode name="test1">
+        <id>I001</id>
+        <filename>test1file.txt</filename>
+        <data>YWJjZGVmZw==</data>
+    </recode>
+    <recode name="test2">
+        <id>I002</id>
+        <filename>test2file.md</filename>
+        <data>5pel5pys6Kqe44Gu44OG44K544OI</data>
+    </recode>
+    <recode name="test3">
+        <id>I003</id>
+        <filename>test3file.pdf</filename>
+        <data>MTIzNDU2Nzg5</data>
+    </recode>
+</ticket>

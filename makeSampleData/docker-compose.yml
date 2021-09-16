@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  haskell_c:
+    image: haskell_c
+    build: haskell_c
+    restart: "no"
+    volumes:
+      - ./haskell_c/export:/code/export
+    environment:
+      - TZ=Asia/Tokyo

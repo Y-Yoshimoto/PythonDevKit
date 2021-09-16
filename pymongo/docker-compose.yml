@@ -1,0 +1,44 @@
+version: "3"
+services:
+    mongo:
+        image: mongodb_custom
+        build: mongodb_custom
+        restart: always
+        ports:
+            - 27017:27017
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+            MONGO_INITDB_DATABASE: "Sampledb"
+        #logging:
+        #    driver: ${LOGDRIVER}
+        #volumes:
+        #    - ./mongodb_data:/data/db
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            ME_CONFIG_OPTIONS_EDITORTHEME: ${MONGO_OPTIONS_EDITORTHEME}
+            ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USERNAME}
+            ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+            ME_CONFIG_MONGODB_URL: ${MONGO_ROOT_URL}
+        logging:
+            driver: ${LOGDRIVER}
+
+    accessormongo:
+        image: accessormongo
+        build: accessormongo
+        restart: always
+        volumes:
+            - ./accessormongo/code:/code
+        ports:
+            - "35000:5000"
+        environment:
+            TZ: ${TZ}
+            PYTHONDONTWRITEBYTECODE: 1
+            FLASK_APP: app
+            FLASK_DEBUG: "True"
+            FLASK_ENV: development

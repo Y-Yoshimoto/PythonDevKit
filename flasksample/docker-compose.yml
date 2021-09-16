@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  flaskapp:
+    image: flaskapp
+    build: flaskapp
+    restart: always
+    volumes:
+      - ./flaskapp/code:/code
+    ports:
+      - "80:5000"
+    environment:
+      TZ: Asia/Tokyo
+      PYTHONDONTWRITEBYTECODE: 1
+      FLASK_APP: app
+      FLASK_ENV: development

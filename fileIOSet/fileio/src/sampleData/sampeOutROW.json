@@ -1,0 +1,22 @@
+[
+    {
+        "delta": 7,
+        "data.Max": 10,
+        "data.Min": 3
+    },
+    {
+        "delta": 1,
+        "data.Max": 4,
+        "data.Min": 3
+    },
+    {
+        "delta": 2,
+        "data.Max": 10,
+        "data.Min": 8
+    },
+    {
+        "delta": 4,
+        "data.Max": 8,
+        "data.Min": 4
+    }
+]

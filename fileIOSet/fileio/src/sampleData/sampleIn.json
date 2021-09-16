@@ -1,0 +1,30 @@
+[
+    {
+        "data": {
+            "Max": 10,
+            "Min": 3
+        },
+        "delta": 7
+    },
+    {
+        "data": {
+            "Max": 4,
+            "Min": 3
+        },
+        "delta": 1
+    },
+    {
+        "data": {
+            "Max": 10,
+            "Min": 8
+        },
+        "delta": 2
+    },
+    {
+        "data": {
+            "Max": 8,
+            "Min": 4
+        },
+        "delta": 4
+    }
+]

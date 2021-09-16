@@ -1,0 +1,22 @@
+version: "3"
+services:
+  accessorredis:
+    image: accessorredis
+    build: accessorredis
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+    volumes:
+      - ./accessorredis/src:/usr/src/
+  redis_c:
+    image: redis_c
+    build: redis_c
+    #restart: "always"
+    ports:
+        - "6379:6379"
+    # command: redis-server --appendonly yes
+    logging:
+        driver: ${LOGDRIVER}
+    #volumes:
+    #    - /radis_data:/data

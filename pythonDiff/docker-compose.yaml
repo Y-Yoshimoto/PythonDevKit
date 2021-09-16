@@ -1,0 +1,12 @@
+version: "3"
+services:
+  similar_search:
+    image: similar_search
+    build: similar_search
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPYCACHEPREFIX: "/tmp"
+    volumes:
+      - ./similar_search/src:/usr/src/

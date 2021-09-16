@@ -1,0 +1,34 @@
+[
+    {
+        "data": {
+            "Max": 10,
+            "Min": 3
+        },
+        "info": "Max and Min1",
+        "var": 1
+    },
+    {
+        "data": {
+            "Max": 123,
+            "Min": 2
+        },
+        "info": "Max and Min2",
+        "var": 2
+    },
+    {
+        "data": {
+            "Max": 123,
+            "Min": 4
+        },
+        "info": "Max and Min3",
+        "var": 3
+    },
+    {
+        "data": {
+            "Max": 2,
+            "Min": 1
+        },
+        "info": "Max and Min4",
+        "var": 4
+    }
+]
