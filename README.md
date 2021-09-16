@@ -1,0 +1,3 @@
+# PythonDevKit
+pythonの開発用サンプルコード集
+詳細は書くディレクトリ以下のREADMを参照
