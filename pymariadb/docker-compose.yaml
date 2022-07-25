@@ -1,0 +1,30 @@
+version: "3"
+services:
+  pymairadb:
+    image: pymairadb
+    build: pymairadb
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+    volumes:
+      - ./pymairadb/src:/usr/src/
+  mariadb:
+    image: mariadb_c
+    build: mariadb_c
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      #MYSQL_DATABASE: sampledb
+      #MYSQL_USER: editUser
+      #MYSQL_PASSWORD: Password
+      # volumes:
+      #     - ./db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

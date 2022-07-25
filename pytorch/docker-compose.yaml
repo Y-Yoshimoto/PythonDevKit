@@ -1,0 +1,12 @@
+version: "3"
+services:
+  detectron_training:
+    image: detectron_training
+    build: detectron_training
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPYCACHEPREFIX: "/tmp"
+    volumes:
+      - ./detectron_training/src:/usr/src/

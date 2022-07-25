@@ -1,0 +1,11 @@
+*.pem
+*.crt
+*.csr
+.env
+*.config.json
+*.csv
+*.jpg
+*.png
+pytorch/detectron_training/src/CoCoSample/images/*.jpg
+pytorch/detectron_training/src/TraningDataOutput/*.*
+pytorch/detectron_training/src/TraningDataOutput/last_checkpoint

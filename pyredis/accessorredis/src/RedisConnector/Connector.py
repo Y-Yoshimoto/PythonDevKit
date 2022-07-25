@@ -18,6 +18,11 @@ class Connector:
         """キーを指定して値を登録"""
         self.redisC.set(key, value)
         
+    ## 登録有効期限付き #####################################################
+    def regist_ex(self, key, value, ex):
+        """キーを指定して値を登録"""
+        self.redisC.set(key, value, ex=ex)
+        
     ## 参照 ################################################# 
     def get(self, key):
         """キーを指定して値を取得 キーが無い場合 Noneを返す"""

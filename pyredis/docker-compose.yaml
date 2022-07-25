@@ -14,9 +14,9 @@ services:
     build: redis_c
     #restart: "always"
     ports:
-        - "6379:6379"
+      - "6379:6379"
     # command: redis-server --appendonly yes
     logging:
-        driver: ${LOGDRIVER}
+      driver: ${LOGDRIVER}
     #volumes:
     #    - /radis_data:/data
