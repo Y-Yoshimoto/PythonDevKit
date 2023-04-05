@@ -15,13 +15,14 @@ def main():
     
     # Download HLS
     ## ffmpeg Command Sample
-    ## ffmpeg -i "http://hoge/hoge.m3u8" -c copy -bsf:a aac_adtstoasc "sample_O.mp4"
+    ## ffmpeg -i "http://hoge/hoge.m3u8" -c copy -bsf:a aac_adtstoasc "./files/sample_C.mp4"
     
     ## Python Sample
-    stream = ffmpeg.input(sample_url)
-    
-    stream = ffmpeg.output(stream, 'sample.mp4')
-
+    ## import m3u8
+    stream = ffmpeg.input(sample_url, headers='Authentication: token')
+    ## Output sample.mp4
+    stream = ffmpeg.output(stream, './files/sample.mp4', c='copy')
+    ffmpeg.run(stream)
     print("end")
 
 
