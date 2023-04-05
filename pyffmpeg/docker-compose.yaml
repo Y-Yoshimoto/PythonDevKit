@@ -1,0 +1,11 @@
+version: "3"
+services:
+  pyffmpeg:
+    image: pyffmpeg
+    build: .
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+    volumes:
+      - ./src/:/usr/src
