@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="//vjs.zencdn.net/7.21.4/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/7.21.4/video.min.js"></script>
+
+<body>
+    Index.html
+    <!-- videojsのタグを作成 -->
+    <video-js id="vid1" width="960" data-setup='{}'></video-js>
+</body>
+
+<script>
+    // m3u8のURL
+    url = "./output.m3u8"
+    // オプション
+    options = {
+        controls: true,
+        muted: true,
+        autoplay: 'muted',
+        preload: 'auto'
+    }
+    // videojsのインスタンスを作成
+    var player = videojs('vid1', options);
+    // m3u8のURLをセット    
+    player.src({
+        src: url,
+        type: 'application/x-mpegURL',
+        withCredentials: true
+    });
+    // 再生
+    player.play();
+</script>
+
+</html>
