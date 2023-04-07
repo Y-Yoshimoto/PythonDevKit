@@ -65,7 +65,7 @@ def download_hls_ffmpeg(url, dryrun=False):
     ## import m3u8
     stream = ffmpeg.input(url, headers='Authentication: token')
     ## Output sample.mp4
-    stream = ffmpeg.output(stream, './files/sample.mp4', c='copy')
+    stream = ffmpeg.output(stream, './files/move/sample.mp4', c='copy')
     if(not dryrun):
         ffmpeg.run(stream)
 

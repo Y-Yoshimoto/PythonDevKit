@@ -21,7 +21,7 @@ def main():
     ## import m3u8
     stream = ffmpeg.input(sample_url, headers='Authentication: token')
     ## Output sample.mp4
-    stream = ffmpeg.output(stream, './files/sample.mp4', c='copy')
+    stream = ffmpeg.output(stream, './files/move/sample.mp4', c='copy')
     ffmpeg.run(stream)
     print("end")
 
