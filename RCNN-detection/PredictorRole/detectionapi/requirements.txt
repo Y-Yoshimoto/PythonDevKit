@@ -1,0 +1,21 @@
+####### requirements.txt #######
+
+###### Requirements without Version Specifiers ######
+# FastAPi
+fastapi
+uvicorn
+
+# Pytorch
+torch
+torchvision
+opencv-python
+
+# Core
+datetime
+
+###### Requirements with Version Specifiers ######
+# requests == 2.24.0             # Version Matching. Must be version 2.24.0
+
+#
+###### Use pip no cache ######
+# pip install --no-cache-dir -r requirements.txt

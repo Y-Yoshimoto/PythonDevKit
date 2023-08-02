@@ -1,0 +1,25 @@
+version: "3"
+services:
+  labelstudio:
+    image: heartexlabs/label-studio:latest
+    #container_name: label_studio
+    #image: labelstudio_c
+    #build: labelstudio_c
+    ports:
+      - 8080:8080
+    volumes:
+      - ./labeldata:/label-studio/data
+    environment:
+      - TZ=${TZ}
+      # - LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK=true
+    command: label-studio start --username test@test.com --password password
+  dectrainer:
+    image: dectrainer
+    build:
+      context: ./dectrainer
+      dockerfile: Dockerfile.${DEVICE}
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+volumes:
+  labeldata:

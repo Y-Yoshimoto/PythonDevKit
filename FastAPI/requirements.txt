@@ -1,0 +1,20 @@
+####### requirements.txt #######
+
+###### Requirements without Version Specifiers ######
+# FastAPi
+fastapi
+gunicorn
+uvicorn[standard]
+
+# Core
+datetime
+
+# Fluentd
+#fluent-logger
+
+###### Requirements with Version Specifiers ######
+# requests == 2.24.0             # Version Matching. Must be version 2.24.0
+
+#
+###### Use pip no cache ######
+# pip install --no-cache-dir -r requirements.txt

@@ -1,0 +1,15 @@
+{
+    "listeners": {
+        "*:5000": {
+            "application": "dataapi"
+        }
+    },
+    "applications": {
+        "dataapi": {
+            "type": "python",
+            "processes": 5,
+            "path": "/usr/src/",
+            "module": "app"
+        }
+    }
+}

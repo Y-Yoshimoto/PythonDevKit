@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+    nrproxy:
+        image: nrproxy
+        build: nrproxy
+        restart: always
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - default
+            # - OtherNW_default
+    staticweb:
+        image: staticweb
+        build: staticweb
+        restart: always
+        ports:
+            - "8082:80"
+            - "8443:443"
+        networks:
+            - default
+            # - OtherNW_default
+        volumes:
+            - ./staticweb/contents/:/usr/share/nginx/html/
+    detectionapi:
+        image: detectionapi
+        build: detectionapi
+        restart: always
+        volumes:
+            - ./detectionapi/src:/usr/src
+        ports:
+            - "8083:5000"
+        #user: "1000:1000"
+        environment:
+            TZ: Asia/Tokyo
+            PYTHONDONTWRITEBYTECODE: 1
+            FLASK_APP: app
+            #FLASK_DEBUG: 1

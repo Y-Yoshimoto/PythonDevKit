@@ -1,0 +1,18 @@
+# base
+.DS_Store
+Thumbs.db
+*.class
+*.pyc
+._.DS_Store
+.git
+.hg
+.svn
+._*
+Thumbs.db
+.xbb
+*.png
+*.jpg
+*.bat
+
+# LabelData
+./labeldata/*
