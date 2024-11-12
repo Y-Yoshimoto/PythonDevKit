@@ -1,0 +1,20 @@
+{
+    "name": "pythondevc",
+    "dockerComposeFile": [
+        "../docker-compose.yaml"
+    ],
+    "service": "python_devc",
+    "workspaceFolder": "/usr/src/",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "oderwat.indent-rainbow",
+                "charliermarsh.ruff"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

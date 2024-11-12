@@ -1,0 +1,11 @@
+version: "3"
+services:
+  python:
+    image: python_dev
+    build: python_dev
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      PYTHONDONTWRITEBYTECODE: 1
+    volumes:
+      - ./python_dev/src:/usr/src/
