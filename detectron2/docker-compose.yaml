@@ -1,13 +1,12 @@
+version: "3"
 services:
-  pytorch_c:
-    image: pytorch_c
-    build: pytorch_c
+  detectron_training:
+    image: detectron_training
+    build: detectron_training
     #restart: always
     environment:
       TZ: ${TZ}
-      UID: ${UID}
-      GID: ${GID}
       PYTHONDONTWRITEBYTECODE: 1
       PYTHONPYCACHEPREFIX: "/tmp"
     volumes:
-      - ./pytorch_c/src:/usr/src/
+      - ./detectron_training/src:/usr/src/

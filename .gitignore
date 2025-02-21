@@ -6,9 +6,9 @@
 *.csv
 *.jpg
 *.png
-pytorch/detectron_training/src/CoCoSample/images/*.jpg
-pytorch/detectron_training/src/TraningDataOutput/*.*
-pytorch/detectron_training/src/TraningDataOutput/last_checkpoint
+detectron2/detectron_training/src/CoCoSample/images/*.jpg
+detectron2/detectron_training/src/TraningDataOutput/*.*
+detectron2/detectron_training/src/TraningDataOutput/last_checkpoint
 *.ts
 *.m3u8
 */snnip.py
