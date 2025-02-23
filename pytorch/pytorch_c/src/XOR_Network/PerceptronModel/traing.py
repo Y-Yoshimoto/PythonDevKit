@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # coding:utf-8
 
+import logging
+
 # PyTorch
 import torch
 import torch.nn as nn
 import torch.optim as optim
 # 補助ライブラリ
-import genGraph as gg
+from . import genGraph as gg
 
 
 class Traing():
@@ -27,15 +29,15 @@ class Traing():
 
     # 学習系メソッド
 
-    def train(self, train_data, val_data, test_data, epochs=10000, pickup_epoch=20, exportMiddle3D=False):
+    def train(self, train_data, val_data, test_data, epochs=10000, pickup_epoch=20, exportGraph=False):
         # 教師付き学習
-        print('Training the model...')
+        logging.debug('Training the model...')
         self.model.train()   # 学習モード切り替え
         # 学習データ登録
         self.train_data = train_data
         self.val_data = val_data
         self.test_data = test_data
-        self.exportMiddle3D = exportMiddle3D
+        self.exportGraph = exportGraph
         # 学習
         self.trainResule = [info
                             for info in self._traingGeneter(max_epoch=epochs, pickup_epoch=pickup_epoch)]
@@ -56,9 +58,9 @@ class Traing():
         train_info = self.calc_accuracy(self.train_data)
         val_info = self.calc_accuracy(self.val_data)
         test_info = self.calc_accuracy(self.test_data)
-        print(
+        logging.info(
             f'Epoch [{epoch}], Loss_train: {train_info["loss"]:.4f}, Loss: {val_info["loss"]:.4f}, Accuracy: {val_info["accuracy"]:.4f}')
-        if (self.exportMiddle3D):
+        if (self.exportGraph):
             self.middle_dataGraphing(
                 self.test_data, f'Result_testMiddle.jpeg', f'Epoch_{epoch}')
         return {'epoch': epoch, 'train': train_info, 'val': val_info, 'test': test_info}
@@ -105,24 +107,25 @@ class Traing():
 
     def eval_accuracy(self):
         # 最終評価値分析
-        print('Calculating accuracy...')
+        logging.debug('Calculating accuracy...')
         self.model.eval()
         train_info = self.calc_accuracy(self.train_data)
         val_info = self.calc_accuracy(self.val_data)
         test_info = self.calc_accuracy(self.test_data)
-        print(
+        logging.info(
             f'Accuracy Train:     {train_info["accuracy"]:.4f} / Loss: {train_info["loss"]:.4f}')
-        print(
+        logging.info(
             f'Accuracy Vlidation: {val_info["accuracy"]:.4f} / Loss: {val_info["loss"]:.4f}')
-        print(
+        logging.info(
             f'Accuracy Test:      {test_info["accuracy"]:.4f} / Loss: {test_info["loss"]:.4f}')
 
         return {'train': train_info, 'val': val_info, 'test': test_info}
 
     def eval_dataGraphing(self):
-        self._graphic(self.train_data, 'Result_train.jpeg', 'Train')
-        self._graphic(self.val_data, 'Result_vlidation.jpeg', 'Vlidation')
-        self._graphic(self.test_data, 'Result_test.jpeg', 'Test')
+        if (self.exportGraph):
+            self._graphic(self.train_data, 'Result_train.jpeg', 'Train')
+            self._graphic(self.val_data, 'Result_vlidation.jpeg', 'Vlidation')
+            self._graphic(self.test_data, 'Result_test.jpeg', 'Test')
 
     def _graphic(self, data, filename, title):
         # 推論/正解のセットグラフ描画
@@ -136,8 +139,9 @@ class Traing():
 
     def eval_trainResuleGraphing(self):
         # 学習結果グラフ出力(損出関数と正解率)
-        gg.plot_2d_Result_lossAndAccuracyGraph(
-            self.trainResule, filename='Result_lossAndAccuracy.jpeg', title='Loss and Accuracy')
+        if (self.exportGraph):
+            gg.plot_2d_Result_lossAndAccuracyGraph(
+                self.trainResule, filename='Result_lossAndAccuracy.jpeg', title='Loss and Accuracy')
 
     @classmethod
     def makeDataset(cls, x: list, t: list):

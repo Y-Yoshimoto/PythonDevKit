@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 # 基本ライブラリ
 from functools import reduce
+import logging
 
 # 設定
 torch.set_printoptions(edgeitems=1000)
@@ -60,5 +61,5 @@ class N_2LayerPerceptron(nn.Module):
         self.load_state_dict(torch.load(path))
 
     def showModel(self):
-        print('Model Info')
-        print(self)
+        logging.info('Model Info')
+        logging.info(self)

@@ -2,16 +2,16 @@
 # coding:utf-8
 
 # 補助ライブラリ
-import genData as gd
+from . import genData as gd
 
 
 # ネットワークモデル
-from model import N_2LayerPerceptron
+from .model import N_2LayerPerceptron
 # 学習クラス
-from traing import Traing
+from .traing import Traing
 
 
-def network(middle=20, epoch=3000,  num_tain_datas=200, batch_size=50, learning_rate=0.1, pickup_epoch=20, exportMiddle3D=False):
+def network(middle=20, epoch=3000,  num_tain_datas=200, batch_size=50, learning_rate=0.1, pickup_epoch=20, exportGraph=False):
     # 訓練データ定義 ---------------------------------------------
     # train_input = [[-1, -1], [-1, 1], [1, -1], [1, 1]]
     # train_output = [[0], [1], [1], [0]]
@@ -40,7 +40,7 @@ def network(middle=20, epoch=3000,  num_tain_datas=200, batch_size=50, learning_
 
     # 学習クラス生成
     TraingInstance = Traing(
-        model=model, learning_rate=0.1, batch_size=min(batch_size, num_tain_datas))
+        model=model, learning_rate=learning_rate, batch_size=min(batch_size, num_tain_datas))
 
     # 学習
     trainResule = TraingInstance.train(
@@ -49,21 +49,22 @@ def network(middle=20, epoch=3000,  num_tain_datas=200, batch_size=50, learning_
         val_data=val_data,
         test_data=test_data,
         pickup_epoch=pickup_epoch,
-        exportMiddle3D=exportMiddle3D
+        exportGraph=exportGraph
     )
-    print(trainResule[0])
 
     # 評価
     # 正解率計算
     model.showModel()
     TraingInstance.eval_accuracy()
-    # グラフ出力
+    # グラフ出力(exportGraph=Trueの場合)
     TraingInstance.eval_dataGraphing()
     TraingInstance.eval_trainResuleGraphing()
 
+    return trainResule[-1]
+
 
 def main():
-    network()
+    return network()
 
 
 if __name__ == "__main__":

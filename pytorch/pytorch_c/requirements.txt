@@ -7,6 +7,7 @@ numpy
 matplotlib
 torch
 torchvision
+optuna
 # opencv-python
 
 ###### Requirements with Version Specifiers ######
