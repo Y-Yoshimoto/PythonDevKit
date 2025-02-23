@@ -3,6 +3,8 @@
 ###### Requirements without Version Specifiers ######
 
 datetime
+numpy
+matplotlib
 torch
 torchvision
 # opencv-python
