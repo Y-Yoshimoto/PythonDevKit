@@ -15,9 +15,5 @@ def test_read_main():
     assert response.json() == {"Path": "/RestSample/"}
 
 
-def main():
-    test_read_main()
-
-
 if __name__ == "__main__":
-    main()
+    test_read_main()
