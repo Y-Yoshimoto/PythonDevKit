@@ -5,7 +5,7 @@ wsgi_app = 'app:app'
 # ワーカークラス指定
 worker_class = "uvicorn.workers.UvicornWorker"
 # IPポートバインド
-bind = "0.0.0.0:5000"
+bind = "0.0.0.0:8000"
 # 実行ワーカー数
 workers = 2
 #workers = multiprocessing.cpu_count() * 1 + 1
