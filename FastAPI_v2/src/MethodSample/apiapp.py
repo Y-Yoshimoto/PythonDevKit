@@ -2,7 +2,7 @@
 # coding:utf-8
 # モデル読み込み
 from .model import SampleData
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 # ログ設定
 import logging
@@ -31,11 +31,7 @@ def sample_get(id: int):
     Returns:
         data (SampleData): IDと情報を含む辞書
     """
-    returnData = SampleData(**{'id': id})
-    print(returnData)
-    return returnData
-
-    # return returnData
+    return SampleData(**{'id': id})
 
 
 @router.post("/methodsample/")
@@ -52,3 +48,38 @@ def sample_post(data: SampleData):
 
     """
     return data
+
+
+@router.put("/methodsample/")
+def sample_put(data: SampleData):
+    """
+    Putメソッドのサンプル
+    bodyで受け取ったnameで、デフォルト値を上書きして返す
+
+    Args:
+        id (int): 更新対象のID
+        data (SampleData): 更新データ
+
+    Returns:
+        dict: IDと情報を含む辞書
+
+    """
+    print(data)
+    if (data.id is None):
+        raise HTTPException(status_code=400, detail="id does not match")
+    return data
+
+
+@router.delete("/methodsample/{id}")
+def sample_delete(id: int):
+    """
+    Deleteメソッドのサンプル
+
+    Args:
+        id (int): 削除対象のID
+
+    Returns:
+        dict: IDを含む辞書
+
+    """
+    return {"id": id}
