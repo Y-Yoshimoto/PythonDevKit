@@ -1,0 +1,14 @@
+version: "3"
+services:
+  fastapi_c:
+    image: fastapi_c
+    build: ./
+    restart: always
+    volumes:
+      - ./src:/usr/src
+    ports:
+      - "8083:5000"
+    #user: "1000:1000"
+    environment:
+      TZ: Asia/Tokyo
+      PYTHONDONTWRITEBYTECODE: 1
