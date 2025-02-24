@@ -21,13 +21,18 @@ RUN echo 'alias py="python"' >> /etc/bash.bashrc \
 
 # Install curl
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl\
+    && apt-get install -y --no-install-recommends curl postgresql-client\
     && apt-get -y clean
+
 # Install pip package
 COPY requirements.txt ./
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && pip freeze > requirements.lock 
+
+
+
+
 EXPOSE 8000
 
 # COPY ./src/* /usr/src

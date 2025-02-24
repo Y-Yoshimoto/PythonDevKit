@@ -2,7 +2,7 @@ services:
   fastapi_c:
     image: fastapi_c
     build: ./
-    restart: always
+    # restart: always
     volumes:
       - ./src:/usr/src
     ports:
@@ -12,3 +12,15 @@ services:
       TZ: Asia/Tokyo
       PYTHONDONTWRITEBYTECODE: 1
       PYTHONPATH: /usr/src
+      PGPASSWORD: postgres
+  postgres_c:
+      image: postgres_c
+      build: postgres_c
+      ports:
+          - 5432
+      # restart: always
+      environment:
+          POSTGRES_PASSWORD: postgres
+          #POSTGRES_USER:
+      # volumes:
+      #     - ./db_data:/var/lib/postgresql/data

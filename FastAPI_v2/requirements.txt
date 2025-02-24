@@ -1,13 +1,15 @@
 ####### requirements.txt #######
 
 ###### Requirements without Version Specifiers ######
-# FastAPi
+# FastAPI
 fastapi
 gunicorn
 httpx
 uvicorn[standard]
 strawberry-graphql[debug-server]
 
+# Database
+psycopg
 
 # Core
 pytest
