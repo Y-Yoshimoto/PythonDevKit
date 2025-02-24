@@ -14,13 +14,13 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/sample/", include_in_schema=False)
+@router.get("/RestSample/", include_in_schema=False)
 def read_root():
     # Rootパス用
-    return {"Path": "sample/root"}
+    return {"Path": "/RestSample/"}
 
 
-@router.get("/methodsample/{id}")
+@router.get("/RestSample/{id}")
 def sample_get(id: int):
     """
     Getメソッドのサンプル
@@ -34,7 +34,7 @@ def sample_get(id: int):
     return SampleData(**{'id': id})
 
 
-@router.post("/methodsample/")
+@router.post("/RestSample/")
 def sample_post(data: SampleData):
     """
     Postメソッドのサンプル
@@ -50,7 +50,7 @@ def sample_post(data: SampleData):
     return data
 
 
-@router.put("/methodsample/")
+@router.put("/RestSample/")
 def sample_put(data: SampleData):
     """
     Putメソッドのサンプル
@@ -70,7 +70,7 @@ def sample_put(data: SampleData):
     return data
 
 
-@router.delete("/methodsample/{id}")
+@router.delete("/RestSample/{id}")
 def sample_delete(id: int):
     """
     Deleteメソッドのサンプル
