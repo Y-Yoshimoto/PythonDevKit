@@ -8,10 +8,9 @@ httpx
 uvicorn[standard]
 strawberry-graphql[debug-server]
 # formデータ処理
-multipart
 
 # Database
-psycopg
+# psycopg
 
 # Core
 pytest

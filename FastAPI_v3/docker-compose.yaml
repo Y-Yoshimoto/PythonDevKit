@@ -1,0 +1,15 @@
+services:
+  fastapi_c:
+    image: fastapi_c
+    build: ./
+    # restart: always
+    volumes:
+      - ./:/app/
+    ports:
+      - "8000:8000"
+    user: "501:20"
+    environment:
+      TZ: Asia/Tokyo
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPATH: /app/src
+      PGPASSWORD: postgres
