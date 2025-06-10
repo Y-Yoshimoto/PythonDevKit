@@ -14,6 +14,8 @@ RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && pip freeze > requirements.lock
 
+ARG WORKDIR=/app/
+
 # 実行ユーザー追加
 ARG USERNAME=vscode
 ARG USER_UID=501
@@ -22,8 +24,8 @@ RUN useradd -m -s /bin/bash -u $USER_UID -g $USER_GID $USERNAME \
     && usermod -a -G 0 $USERNAME
 
 # Make workdir
-WORKDIR /usr/src
-#RUN chown -R $USERNAME:$USERNAME /usr/src
-VOLUME /usr/src
+RUN mkdir -p $WORKDIR \
+    && chown -R $USERNAME $WORKDIR
+VOLUME $WORKDIR
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]

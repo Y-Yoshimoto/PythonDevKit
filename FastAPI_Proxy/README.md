@@ -1,8 +1,10 @@
-# FastAPI_v3
+# FastAPIを使用したWebAPIプロキシ
+
+## FastAPI_v3ベース
 
 ## 概要
 
-FastAPIでAPIを作るサンプルコード
+FastAPIを使用して、WebAPIのプロキシを行うサンプルコード
 
 ## 参考
 
