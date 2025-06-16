@@ -3,8 +3,6 @@
 # https://docs.pytest.org/en/stable/getting-started.html
 from HttpClient.Client import Client
 
-# HTTPクライアントのインスタンス作成
-
 
 class TestClass:
     def __init__(self, baseURL: str ):
