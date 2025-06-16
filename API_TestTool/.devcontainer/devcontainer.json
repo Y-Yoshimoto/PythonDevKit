@@ -1,0 +1,25 @@
+{
+    "name": "fastapi",
+    "dockerComposeFile": [
+        "../docker-compose.yaml"
+    ],
+    "service": "fastapi_c",
+    "workspaceFolder": "/app/",
+    "overrideCommand": true,
+    "onCreateCommand": "echo 'Running DevContainer'",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "oderwat.indent-rainbow",
+                "charliermarsh.ruff",
+                "ms-python.autopep8",
+                "ms-python.pylint",
+                "ms-ossdata.vscode-postgresql"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}
