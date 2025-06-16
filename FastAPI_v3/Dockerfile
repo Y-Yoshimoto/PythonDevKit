@@ -12,7 +12,7 @@ RUN useradd -m -s /bin/bash -u $USER_UID -g $USER_GID $USERNAME \
     && chown $USERNAME:dialout /vscode/vscode-server/.*
 
 ### Python用短縮コマンド/ホットリロードシェルスクリプトを追加
-COPY ./pythonWatch.sh /usr/local/bin/
+COPY ./tools/pythonWatch.sh /usr/local/bin/
 RUN echo 'alias py="python"' >> /etc/bash.bashrc \
     && echo 'alias pyw="pythonWatch.sh"' >> /etc/bash.bashrc \
     # && echo 'alias pyt="python -m unittest"' >> /etc/bash.bashrc \
