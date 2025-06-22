@@ -16,6 +16,14 @@ strawberry-graphql[debug-server]
 pytest
 datetime
 
+# Dev Tools
+jinja2
+lizard 
+
+# コマンドサンプル
+# lizard -l typython pescript --html > ./metrics.html
+
+
 # Fluentd
 #fluent-logger
 

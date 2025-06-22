@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # ユニットテストコードサンプル
 # https://docs.pytest.org/en/stable/getting-started.html
-from HttpClient.Client import Client
+from HttpClient.Client import HttpClient
 
 
 class TestClass:
     def __init__(self, baseURL: str ):
-        self.requestClient = Client(baseURL)
+        self.requestClient = HttpClient(baseURL)
 
 
     def test_snnip(self):
@@ -60,10 +60,6 @@ def test_request():
 if __name__ == "__main__":
     test_instance = TestClass(baseURL="http://127.0.0.1:8000/RestSample")
     test_instance.test_snnip()
-    test_instance.test_get()
-    test_instance.test_post()
-    test_instance.test_put()
-    test_instance.test_delete()
 
 """
 Try-exceptサンプル
