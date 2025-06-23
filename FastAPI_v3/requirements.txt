@@ -7,6 +7,7 @@ gunicorn
 httpx
 uvicorn[standard]
 strawberry-graphql[debug-server]
+WebSockets
 # formデータ処理
 
 # Database
