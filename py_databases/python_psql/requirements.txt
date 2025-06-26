@@ -1,28 +1,18 @@
 ####### requirements.txt #######
 
 ###### Requirements without Version Specifiers ######
-# FastAPI
-fastapi
-gunicorn
-httpx
-uvicorn[standard]
-strawberry-graphql[debug-server]
-WebSockets
-# formデータ処理
-python-multipart
-
-# Email validation
-email-validator
-
-# Database
-sqlmodel
-
-# Core
-pytest
+# core
 datetime
+pydantic
+asyncio
 
-# Fluentd
-#fluent-logger
+# unit testing
+pytest
+pytest-asyncio 
+
+# database
+psycopg[binary]
+psycopg[pool]
 
 ###### Requirements with Version Specifiers ######
 # requests == 2.24.0             # Version Matching. Must be version 2.24.0

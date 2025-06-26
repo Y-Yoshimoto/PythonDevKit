@@ -1,0 +1,22 @@
+{
+    "name": "python_psql",
+    "dockerComposeFile": [
+        "../docker-compose.yaml"
+    ],
+    "service": "python_psql",
+    "workspaceFolder": "/app/",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "oderwat.indent-rainbow",
+                "charliermarsh.ruff",
+                "ms-python.autopep8",
+                "ms-python.pylint"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

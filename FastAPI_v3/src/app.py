@@ -4,7 +4,6 @@ import uvicorn
 from fastapi import FastAPI
 
 # サブモジュール読み込み
-from sub.apiapp import router as subrouter
 from RestSample.apiapp import router as RestSample
 from GraphQLSample.apiapp import router as GraphQLSample
 from WebSocket.ws_sample import router as ws_sample
@@ -13,7 +12,6 @@ from WebSocket.ws_sample import router as ws_sample
 # アプリケーション起動
 app = FastAPI()
 # サブモジュール読み込み
-app.include_router(subrouter)
 app.include_router(RestSample)
 app.include_router(GraphQLSample)
 app.include_router(ws_sample)

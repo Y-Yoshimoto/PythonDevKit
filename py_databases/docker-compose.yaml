@@ -1,0 +1,34 @@
+services:
+  python_psql:
+    image: python_psql
+    build:
+        context: python_psql
+        dockerfile: Dockerfile
+    # コンテナ内のユーザーIDとグループIDを指定
+        args:
+            USER_UID: ${UID}
+            USER_GID: ${GID}
+    user: "${UID}:${GID}"
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      UID: ${UID}
+      GID: ${GID}
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPYCACHEPREFIX: "/tmp"
+    volumes:
+      - ./:/app/
+  postgres_c:
+      image: postgres_c
+      build: postgres_c
+      ports:
+          - 5432
+      # restart: always
+      environment:
+          POSTGRES_PASSWORD: postgres
+          #POSTGRES_USER:
+          # LANG: en_US.UTF-8
+          # LANGUAGE: en_US:en
+          # LC_ALL: en_US.UTF-8
+      # volumes:
+      #     - ./db_data:/var/lib/postgresql/data

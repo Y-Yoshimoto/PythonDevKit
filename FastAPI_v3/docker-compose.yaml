@@ -13,3 +13,17 @@ services:
       PYTHONDONTWRITEBYTECODE: 1
       PYTHONPATH: /app/src
       PGPASSWORD: postgres
+  postgres_c:
+      image: postgres_c
+      build: postgres_c
+      ports:
+          - 5432
+      # restart: always
+      environment:
+          POSTGRES_PASSWORD: postgres
+          #POSTGRES_USER:
+          LANG: en_US.UTF-8
+          LANGUAGE: en_US:en
+          LC_ALL: en_US.UTF-8
+      # volumes:
+      #     - ./db_data:/var/lib/postgresql/data
