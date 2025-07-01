@@ -31,8 +31,8 @@ RUN mkdir -p /app/src
 WORKDIR /app/
 COPY requirements.txt /app/
 RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt \
-    && pip freeze > requirements.lock 
+    && pip install --no-cache-dir -r requirements.txt\
+    && pip freeze > requirements.lock
 
 EXPOSE 8000
 

@@ -18,8 +18,13 @@ email-validator
 sqlmodel
 
 # Core
-pytest
 datetime
+
+# Pytest
+pytest
+pytest-cov
+pytest-asyncio
+
 
 # Fluentd
 #fluent-logger

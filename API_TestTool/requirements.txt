@@ -13,12 +13,18 @@ strawberry-graphql[debug-server]
 # psycopg
 
 # Core
-pytest
 datetime
+python-dotenv
 
 # Dev Tools
 jinja2
 lizard 
+
+# Pytest
+pytest
+pytest-cov
+pytest-asyncio
+pytest-html
 
 # コマンドサンプル
 # lizard -l typython pescript --html > ./metrics.html

@@ -3,6 +3,10 @@
 # https://docs.pytest.org/en/stable/getting-started.html
 from HttpClient.Client import HttpClient
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class TestClass:
     def __init__(self, baseURL: str ):
@@ -43,11 +47,18 @@ class TestClass:
         assert response.status_code == 200
 
 
-def test_request():
+def test_request(caplog, request):
     """
-    ユニットテストの実行
+    ユニットテストの実行 \n
     クラスインスタンス経由の場合はテスト関数を使用する
     """
+    caplog.set_level(logging.INFO)
+    logger.info("ユニットテストを実行します。")
+
+    # 環境変数の表示
+    for key, value in request.config.env.items():
+        print(f"{key}={value}", flush=True)
+
     test_instance = TestClass(baseURL="http://127.0.0.1:8000/RestSample")
     test_instance.test_snnip()
     test_instance.test_get()

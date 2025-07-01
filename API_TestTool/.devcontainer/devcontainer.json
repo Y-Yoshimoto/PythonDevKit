@@ -17,7 +17,7 @@
                 "charliermarsh.ruff",
                 "ms-python.autopep8",
                 "ms-python.pylint",
-                "ms-ossdata.vscode-postgresql"
+                "ms-vscode.live-server"
             ]
         }
     },
