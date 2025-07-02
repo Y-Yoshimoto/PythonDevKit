@@ -12,84 +12,96 @@ from abc import ABCMeta
 # Clientの抽象クラス定義
 class Client_ABC(metaclass=ABCMeta):
     """
-    HTTPクライアントクラス。
-    このクラスは、指定されたベースURLに対してHTTPリクエストを送信するためのメソッドを提供します。
+    HTTPクライアント基底クラス
+    このクラスは、指定されたベースURLに対してHTTPリクエストを送信するためのメソッドを提供
     Attributes:
-        baseURL (str): リクエストのベースURL。
+        baseURL (str): ベースURL
+        client (httpx.Client): 同期HTTPクライアント
+        async_client (httpx.AsyncClient): 非同期HTTPクライアント
+        headers (dict): 追加のリクエストヘッダー
     """
-    def __init__(self, baseURL: str):
+    # デフォルト基底ヘッダー
+    defaultheaders = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+
+    def __init__(self, domain: str, ssl: bool = False, headers: dict = None):
+        """
+        コンストラクタ
+        HTTP接続の同期クライアントと非同期クライアントを初期化
+        """
         # ベースURLを初期化
-        self.baseURL: str = baseURL
+        self.base_url: str = f"https://{domain}/" if ssl else f"http://{domain}/"
+        # 追加のヘッダーを設定
+        self.headers = {**self.defaultheaders, **(headers or {})}
+
         # HTTPクライアントの初期化
         # https://www.python-httpx.org/advanced/clients/
-        self.client = httpx.Client(base_url=baseURL, timeout=None, follow_redirects=True)
-    
+        self.client = httpx.Client(base_url=self.base_url, timeout=None, follow_redirects=True, headers=self.headers)
+        # 非同期HTTPクライアントの初期化
+        self.async_client = httpx.AsyncClient(base_url=self.base_url, timeout=None, follow_redirects=True, headers=self.headers)
+
     def __del__(self):
         """クライアントのリソースを解放する"""
         self.client.close()
+        self.async_client.close()
 
-    def get(self, path: str):
+    
+    def _send_request(self, sendClient, method: str, path: str, params: dict = None, data: dict = None):
+        """ メソッドに応じてHTTPリクエストを送信するヘルパーメソッド """
+        if method.upper() == "GET":
+            if data is None:
+                return sendClient.get(path, params=params)
+            else:
+                # Body付きGETリクエストの処理
+                return sendClient.send(httpx.Request("GET", path, json=data, params=params))
+        elif method.upper() == "POST":
+            return sendClient.post(path, json=data, params=params)
+        elif method.upper() == "PUT":
+            return sendClient.put(path, json=data, params=params)
+        elif method.upper() == "DELETE":
+            return sendClient.delete(path, params=params)
+        else:
+            raise ValueError(f"Unsupported HTTP method: {method}")
+
+    # 同期リクエスト
+    def request(self, method: str, path: str, params: dict = None, data: dict = None):
         """
-        指定されたパスに対してGETリクエストを送信する。
+        指定されたパスに対してHTTPリクエストを送信
         Args:
+            method (str): HTTPメソッド（GET, POST, PUT, DELETEなど）。
             path (str): リクエストのパス。
+            params (dict): クエリパラメータ。
+            data (dict): リクエストボディ。
         Returns:
             httpx.Response: レスポンスオブジェクト。
         """
-        return self.client.get(path)
+        return self._send_request(self.client, method, path, params, data)
 
-    def getWithBody(self, path: str, body: dict):
+    # 非同期リクエスト(検証中)
+    async def async_request(self, method: str, path: str, params: dict = None, data: dict = None):
         """
-        指定されたパスに対してBodyを付けてGETリクエストを送信する。
+        指定されたパスに対して非同期HTTPリクエストを送
         Args:
+            method (str): HTTPメソッド（GET, POST, PUT, DELETEなど）。
             path (str): リクエストのパス。
-            body (dict): リクエストボディ。
+            params (dict): クエリパラメータ。
+            data (dict): リクエストボディ。
         Returns:
-            httpx.Response: レスポンスオブジェクト。
+            httpx.Response: 非同期レスポンスオブジェクト。
         """
-        req = httpx.Request("GET", path, json=body)
-        return self.client.send(req)
-
-    def post(self, path: str, data: dict):
-        """
-        指定されたパスに対してPOSTリクエストを送信する。
-        Args:
-            path (str): リクエストのパス。
-            data (dict): 送信するデータ。
-        Returns:
-            httpx.Response: レスポンスオブジェクト。
-        """
-        return self.client.post(path, json=data)
-
-    def put(self, path: str, data: dict):
-        """
-        指定されたパスに対してPUTリクエストを送信する。
-        Args:
-            path (str): リクエストのパス。
-            data (dict): 送信するデータ。
-        Returns:
-            httpx.Response: レスポンスオブジェクト。
-        """
-        return self.client.put(path, json=data)
-
-    def delete(self, path: str):
-        """
-        指定されたパスに対してDELETEリクエストを送信する。
-        Args:
-            path (str): リクエストのパス。
-        Returns:
-            httpx.Response: レスポンスオブジェクト。
-        """
-        return self.client.delete(path)
-
+        return self._send_request(self.async_client, method, path, params, data)
 
 # HttpClient.Client.py
 class HttpClient(Client_ABC):
     """
     HTTPクライアントクラス。
-    このクラスは、指定されたベースURLに対してHTTPリクエストを送信するためのメソッドを提供します。
+    このクラスは、指定されたベースURLに対してHTTPリクエストを送信するためのメソッドを提供
     Attributes:
-        baseURL (str): リクエストのベースURL。
+        domain (str): ドメイン名
+        ssl (bool): SSLを使用するかどうか
+        headers (dict): 追加のリクエストヘッダー
     """
-    def __init__(self, baseURL: str):
-        super().__init__(baseURL)
+    def __init__(self, domain: str, ssl: bool = False, headers: dict = None):
+        super().__init__(domain=domain, ssl=ssl, headers=headers)

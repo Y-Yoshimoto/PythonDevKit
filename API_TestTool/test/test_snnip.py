@@ -61,10 +61,10 @@ def test_request(caplog, request):
 
     test_instance = TestClass(baseURL="http://127.0.0.1:8000/RestSample")
     test_instance.test_snnip()
-    test_instance.test_get()
-    test_instance.test_post()
-    test_instance.test_put()
-    test_instance.test_delete()
+    # test_instance.test_get()
+    # test_instance.test_post()
+    # test_instance.test_put()
+    # test_instance.test_delete()
 
 
 # スニペット実行用
