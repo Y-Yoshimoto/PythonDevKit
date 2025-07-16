@@ -9,7 +9,7 @@ fi
 # 引数で指定されたファイルを監視して、保存されたらPythonスクリプトを実行
 echo "---" python $1 "---------------"
 python "$1"
-while inotifywait -qq -e close_write "$1"; do
+while inotifywait -qq -e close_write --include '\.py$' -r .; do
     echo "---" python $1 "---------------"
     python "$1"
     echo "-------------------------------"
