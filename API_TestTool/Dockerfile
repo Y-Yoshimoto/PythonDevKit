@@ -15,7 +15,6 @@ RUN useradd -m -s /bin/bash -u $USER_UID -g $USER_GID $USERNAME \
 COPY ./tools/pythonWatch.sh /usr/local/bin/
 RUN echo 'alias py="python"' >> /etc/bash.bashrc \
     && echo 'alias pyw="pythonWatch.sh"' >> /etc/bash.bashrc \
-    # && echo 'alias pyt="python -m unittest"' >> /etc/bash.bashrc \
     && echo 'export pyt="python -m pytest"' >> /etc/bash.bashrc \
     && echo 'export pytest="python -m pytest"' >> /etc/bash.bashrc
 

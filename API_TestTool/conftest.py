@@ -30,11 +30,11 @@ def pytest_html_report_title(report):
 @pytest.hookimpl(tryfirst=True)
 def pytest_html_results_table_header(cells):
     """ HTMLレポートのヘッダーにpydocからの説明列を追加 """
-    cells.insert(2, "<th>Description</th>")
+    cells.insert(1, "<th>Description</th>")
 @pytest.hookimpl(tryfirst=True)
 def pytest_html_results_table_row(report, cells):
     """ HTMLレポートの各行にpydocからの説明列を追加 """
-    cells.insert(2, "<td>{}</td>".format(report.description))
+    cells.insert(1, f'<td>{report.description}</td>')
 ## HTMLレポートのテスト結果の詳細にカスタム情報を追加
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
