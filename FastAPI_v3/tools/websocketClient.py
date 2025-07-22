@@ -4,7 +4,7 @@ import websockets
 
 
 async def send_task(websocket):
-        
+    while True:
         msg = await asyncio.get_event_loop().run_in_executor(None, input, "Send message (or 'exit' to quit): ")
         if msg.lower() == "exit":
             print("Exiting WebSocket client.")
