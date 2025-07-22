@@ -25,6 +25,7 @@ pytest
 pytest-cov
 pytest-asyncio
 pytest-html
+pytest-check
 
 # コマンドサンプル
 # lizard -l typython pescript --html > ./metrics.html

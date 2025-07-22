@@ -1,6 +1,6 @@
 services:
-  fastapi_c:
-    image: fastapi_c
+  api_pytest_c:
+    image: api_pytest_c
     build: ./
     # restart: always
     volumes:
@@ -13,3 +13,5 @@ services:
       PYTHONDONTWRITEBYTECODE: 1
       PYTHONPATH: /app/src
       PGPASSWORD: postgres
+      # PLAYWRIGHT_BROWSERS_PATH: /home/vscode/pw-browsers
+      

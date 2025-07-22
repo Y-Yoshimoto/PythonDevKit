@@ -22,17 +22,24 @@ RUN echo 'alias py="python"' >> /etc/bash.bashrc \
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update \
-    && apt-get install -y --no-install-recommends curl postgresql-client  inotify-tools\
+    && apt-get install -y --no-install-recommends sudo curl postgresql-client inotify-tools\
     && apt-get -y clean
 
 # Install pip package
+# https://playwright.dev/python/docs/browsers
 RUN mkdir -p /app/src
 WORKDIR /app/
 COPY requirements.txt /app/
-RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt\
+RUN --mount=type=cache,mode=0755,target=/root/.cache/pip \
+    pip install --upgrade pip \
+    && pip install -r requirements.txt \
+    && pip install pytest-playwright \
+    && playwright install-deps \
     && pip freeze > requirements.lock
 
+# vscode権限でplaywrightのブラウザをインストール
+# ENV PLAYWRIGHT_BROWSERS_PATH=/home/vscode/pw-browsers
+RUN sudo -u $USERNAME python -m playwright install chromium
 EXPOSE 8000
 
 ## unicon起動用

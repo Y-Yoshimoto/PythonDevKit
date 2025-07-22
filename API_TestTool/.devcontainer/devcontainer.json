@@ -3,7 +3,7 @@
     "dockerComposeFile": [
         "../docker-compose.yaml"
     ],
-    "service": "fastapi_c",
+    "service": "api_pytest_c",
     "workspaceFolder": "/app/",
     "overrideCommand": true,
     "onCreateCommand": "echo 'Running DevContainer'",

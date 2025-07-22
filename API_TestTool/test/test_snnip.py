@@ -14,9 +14,6 @@ def re_client():
     yield requestClient
 
 class TestClass:
-    # def __init__(self, baseURL: str ):
-    #     re_client = HttpClient(baseURL)
-    # @classmethod
 
     def test_snnip(self, re_client):
         response = re_client.request("POST", "", {}, {"id": 4, "name": "test"})
