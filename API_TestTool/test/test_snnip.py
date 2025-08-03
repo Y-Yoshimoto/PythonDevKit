@@ -3,6 +3,7 @@
 # https://docs.pytest.org/en/stable/getting-started.html
 from HttpClient.Client import HttpClient
 import pytest
+import pytest_check as check
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,8 +19,8 @@ class TestClass:
     def test_snnip(self, re_client):
         response = re_client.request("POST", "", {}, {"id": 4, "name": "test"})
         print(response.text, flush=True)
-        assert response.json()["id"] == 4
-        assert response.status_code == 200
+        check.equal(response.json()["id"], 4, "IDが一致しません")
+        check.equal(response.status_code, 200, "ステータスコードが200ではありません")
 
     # GETリクエスト
     def test_get(self, re_client):
