@@ -1,0 +1,45 @@
+services:
+  salesforce_restclient_dev:
+    image: salesforce_restclient_dev
+    build:
+        context: .
+        dockerfile: Dockerfile
+    # コンテナ内のユーザーIDとグループIDを指定
+        args:
+            USER_UID: ${UID}
+            USER_GID: ${GID}
+    user: "${UID}:${GID}"
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      UID: ${UID}
+      GID: ${GID}
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPYCACHEPREFIX: "/tmp"
+      # Salesforce environment
+      SAF_CONSUMER_ID: ${SAF_CONSUMER_ID}
+      SAF_USERNAME: ${SAF_USERNAME}
+      SAF_SalesforceAPIVersion: ${SAF_SalesforceAPIVersion}
+      SAF_ACCESS_KEY_PASS: ${SAF_ACCESS_KEY_PASS}
+      SAF_ACCESS_PEM: ${SAF_ACCESS_PEM}
+
+    volumes:
+      - ./:/app/
+    
+  salesforce_cli_container:
+    image: salesforce_cli_container
+    build:
+        context: cli
+        dockerfile: Dockerfile
+    # コンテナ内のユーザーIDとグループIDを指定
+        args:
+            USER_UID: ${UID}
+            USER_GID: ${GID}
+    user: "${UID}:${GID}"
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      UID: ${UID}
+      GID: ${GID}
+    volumes:
+      - ./cli:/cli/

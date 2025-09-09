@@ -1,0 +1,20 @@
+services:
+  simulation_analysis_c:
+    image: simulation_analysis_c
+    build:
+        context: .
+        dockerfile: Dockerfile
+    # コンテナ内のユーザーIDとグループIDを指定
+        args:
+            USER_UID: ${UID}
+            USER_GID: ${GID}
+    user: "${UID}:${GID}"
+    #restart: always
+    environment:
+      TZ: ${TZ}
+      UID: ${UID}
+      GID: ${GID}
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONPYCACHEPREFIX: "/tmp"
+    volumes:
+      - ./:/app/

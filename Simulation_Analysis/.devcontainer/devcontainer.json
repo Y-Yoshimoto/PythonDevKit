@@ -1,0 +1,22 @@
+{
+    "name": "simulation_analysis_c",
+    "dockerComposeFile": [
+        "../docker-compose.yaml"
+    ],
+    "service": "simulation_analysis_c",
+    "workspaceFolder": "/app/",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "oderwat.indent-rainbow",
+                "charliermarsh.ruff",
+                "ms-python.autopep8",
+                "ms-python.pylint"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

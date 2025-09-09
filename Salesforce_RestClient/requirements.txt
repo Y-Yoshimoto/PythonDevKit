@@ -1,0 +1,21 @@
+####### requirements.txt #######
+
+###### Requirements without Version Specifiers ######
+# core
+datetime
+httpx
+
+# Pytest
+pytest
+pytest-cov
+pytest-asyncio
+
+# Jwt
+PyJWT
+
+###### Requirements with Version Specifiers ######
+# requests == 2.24.0             # Version Matching. Must be version 2.24.0
+
+#
+###### Use pip no cache ######
+# pip install --no-cache-dir -r requirements.txt
