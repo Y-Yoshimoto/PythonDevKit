@@ -12,6 +12,10 @@ pytest-asyncio
 
 # Jwt
 PyJWT
+cryptography
+
+# tmp
+requests
 
 ###### Requirements with Version Specifiers ######
 # requests == 2.24.0             # Version Matching. Must be version 2.24.0

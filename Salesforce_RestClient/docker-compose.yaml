@@ -29,10 +29,11 @@ services:
   salesforce_cli_container:
     image: salesforce_cli_container
     build:
-        context: cli
-        dockerfile: Dockerfile
-    # コンテナ内のユーザーIDとグループIDを指定
+        context: auxiliary
+        dockerfile: Dockerfile_sfacli
+        # コンテナ内のユーザーIDとグループIDを指定
         args:
+            USERNAME: ${USERNAME}
             USER_UID: ${UID}
             USER_GID: ${GID}
     user: "${UID}:${GID}"
@@ -42,4 +43,4 @@ services:
       UID: ${UID}
       GID: ${GID}
     volumes:
-      - ./cli:/cli/
+      - ./:/sfa_cli

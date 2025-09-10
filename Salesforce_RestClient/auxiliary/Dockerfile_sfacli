@@ -1,8 +1,8 @@
 # Yarnインストールコンテナ
-FROM node:24-trixie-slim
+FROM node:24-trixie-slim as install
 LABEL maintaner='y-yoshimoto'
 # 作業ディレクトリ名指定
-ARG WORKDIR_NAME=cli
+ARG WORKDIR_NAME=sfa_cli
 # 環境変数を設定する
 ENV NODE_ENV=development
 
@@ -13,18 +13,19 @@ RUN --mount=type=cache,target=/var/cache/apt \
     && apt-get install -y sudo git curl jq openssl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
+# Salesforce/cliインストール
+RUN --mount=type=cache,target=/root/.yarn \
+    npm install @salesforce/cli --global
 
 # 実行ユーザー追加
-ARG USERNAME=node
+ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=1000
-
+RUN useradd -m -s /bin/bash -u $USER_UID -g $USER_GID $USERNAME || usermod -l $USERNAME node \
+    && usermod -a -G $USER_GID $USERNAME
 # アプリケーションのディレクトリ作成/権限変更
 RUN mkdir -p /$WORKDIR_NAME \
     && chown -R $USERNAME:dialout /$WORKDIR_NAME/
-# Salesforce/cliインストール
-RUN npm install @salesforce/cli --global \
-    && yarn cache clean
 
 # ユーザー変更/作業ディレクトリ変更
 WORKDIR /$WORKDIR_NAME

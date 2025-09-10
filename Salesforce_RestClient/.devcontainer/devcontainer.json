@@ -1,9 +1,9 @@
 {
-    "name": "salesforce_cli_container",
+    "name": "salesforce_restclient_dev",
     "dockerComposeFile": [
         "../docker-compose.yaml"
     ],
-    "service": "salesforce_cli_container",
+    "service": "salesforce_restclient_dev",
     "workspaceFolder": "/app/",
     "customizations": {
         "vscode": {

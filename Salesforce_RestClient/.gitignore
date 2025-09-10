@@ -128,3 +128,6 @@ venv.bak/
 
 # Cython debug symbols
 cython_debug/
+
+./src/sandbox/*
+./certificate/*
