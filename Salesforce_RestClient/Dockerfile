@@ -7,8 +7,6 @@ RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update \
     && apt-get install -y --no-install-recommends sudo inotify-tools openssl git curl \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/* \
     && update-ca-certificates
 
 ### Python用短縮コマンド/ホットリロードシェルスクリプトを追加

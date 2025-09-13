@@ -1,7 +1,7 @@
 {
     "name": "salesforce_restclient_dev",
     "dockerComposeFile": [
-        "../docker-compose.yaml"
+        "../../docker-compose.yaml"
     ],
     "service": "salesforce_restclient_dev",
     "workspaceFolder": "/app/",

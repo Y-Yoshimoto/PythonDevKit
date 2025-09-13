@@ -45,8 +45,9 @@ python_dev/srcディレクトリは、コンテナ内の/usr/srcにマウント
   ls -al
   ```
   - 参考: [非公開鍵と自己署名デジタル証明書の作成](https://developer.salesforce.com/docs/atlas.ja-jp.252.0.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_key_and_cert.htm)
-3. 外部アプリケーションの有効化
-  - 外部クライアントアプリケーション設定  
-  "REST API を使用した外部クライアントアプリケーションのコンシューマーの秘密へのアクセスを許可"を有効化
-  - 接続アプリケーションの作成を許可  
-   作成を許可を有効化
+3. 接続アプリケーションを追加する
+  - 公式ドキュメントを参考に接続アプリケーションを追加する。
+  - API (Enable OAuth Settings)を有効化し、コールバックURLは"http://localhost:8000/callback"を設定する。
+  - 参考: [接続アプリケーションの作成](https://developer.salesforce.com/docs/atlas.ja-jp.252.0.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_connected_app.htm)
+### 他参照資料
+ - [Salesforceの認証](https://developer.salesforce.com/docs/atlas.ja-jp.252.0.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth.htm)

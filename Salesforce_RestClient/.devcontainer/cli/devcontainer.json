@@ -1,0 +1,21 @@
+{
+    "name": "salesforce_cli_container",
+    "dockerComposeFile": [
+        "../../docker-compose.yaml"
+    ],
+    "service": "salesforce_cli_container",
+    "workspaceFolder": "/sfa_cli/",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "salesforce.salesforcedx-vscode",
+                "salesforce.salesforcedx-vscode-apex",
+                "salesforce.salesforcedx-vscode-core",
+                "salesforce.salesforcedx-vscode-lightning",
+                "salesforce.salesforcedx-vscode-visualforce"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}

@@ -1,5 +1,5 @@
 # Yarnインストールコンテナ
-FROM node:24-trixie-slim as install
+FROM node:24-trixie-slim
 LABEL maintaner='y-yoshimoto'
 # 作業ディレクトリ名指定
 ARG WORKDIR_NAME=sfa_cli
@@ -10,12 +10,12 @@ ENV NODE_ENV=development
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=cache,target=/var/lib/apt \
     apt-get update \
-    && apt-get install -y sudo git curl jq openssl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* 
-# Salesforce/cliインストール
-RUN --mount=type=cache,target=/root/.yarn \
-    npm install @salesforce/cli --global
+    && apt-get install -y curl jq openssl 
+
+# 必要なパッケージをインストール
+RUN npm install -g typescript \
+    && npm install --global @salesforce/cli --force \
+    && sf --version
 
 # 実行ユーザー追加
 ARG USERNAME=vscode
@@ -26,7 +26,10 @@ RUN useradd -m -s /bin/bash -u $USER_UID -g $USER_GID $USERNAME || usermod -l $U
 # アプリケーションのディレクトリ作成/権限変更
 RUN mkdir -p /$WORKDIR_NAME \
     && chown -R $USERNAME:dialout /$WORKDIR_NAME/
-
+# Initスクリプト設置
+COPY docker-entrypoint_sfacli.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 # ユーザー変更/作業ディレクトリ変更
 WORKDIR /$WORKDIR_NAME
 CMD ["tail", "-f", "/dev/null"]
