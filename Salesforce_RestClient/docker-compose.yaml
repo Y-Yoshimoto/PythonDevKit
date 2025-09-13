@@ -42,5 +42,11 @@ services:
       TZ: ${TZ}
       UID: ${UID}
       GID: ${GID}
+      # Salesforce environment
+      SAF_CONSUMER_ID: ${SAF_CONSUMER_ID}
+      SAF_USERNAME: ${SAF_USERNAME}
+      SAF_SalesforceAPIVersion: ${SAF_SalesforceAPIVersion}
+      SAF_ACCESS_KEY_PASS: ${SAF_ACCESS_KEY_PASS}
+      SAF_ACCESS_PEM: ${SAF_ACCESS_PEM}
     volumes:
       - ./:/sfa_cli
